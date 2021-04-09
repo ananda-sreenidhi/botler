@@ -9,7 +9,7 @@ class Tell(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Choose is Online!')
+        print('Tell is Online!')
 
     @commands.Cog.listener()
     async def on_message(self, message):

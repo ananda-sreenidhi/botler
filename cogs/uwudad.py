@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from random import randint
+from random import randint, choice
 
 
 class Example(commands.Cog):
@@ -15,15 +15,16 @@ class Example(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         await ctx.send("Pong!")
-
+      
     @commands.Cog.listener()
     async def on_message(self, message):
+        # uwu! 
+        listuwu = ["uwu", "owo", "hewwo"]
         if not message.author.bot:
-            if message.content.startswith("uwu"):
-                await message.channel.send("uwu!")
+            if message.content.lower() in listuwu:
+                await message.channel.send(f"{choice(listuwu)}!")
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
+        # dadbot
         # this isn't the most effective way to do it but i can't be arsed to write it properly as it is 2 am and i am terribly the fuck stressed
         listset = set(["I'm", "i'm", "im", "Im"])
         if not message.author.bot:
