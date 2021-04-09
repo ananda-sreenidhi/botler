@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Database
+*.db
+*.db-journal
+
+# Tokens
+tokens.txt
