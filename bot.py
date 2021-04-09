@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 
-token = open("token.txt", "r").read()
+token = open("tokens.txt", "r").readlines()[0]
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='$', intents=intents)

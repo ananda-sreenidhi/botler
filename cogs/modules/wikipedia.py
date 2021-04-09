@@ -3,7 +3,6 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-
 def codesworth_wikipedia(term):
     try:
         text = wp.summary(term, sentences = 2)
