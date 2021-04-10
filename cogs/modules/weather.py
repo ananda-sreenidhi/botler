@@ -1,6 +1,5 @@
 import requests, json
 
-
 def codesworth_weather(city_name):
     api_key = open("tokens.txt", "r").readlines()[2]
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
