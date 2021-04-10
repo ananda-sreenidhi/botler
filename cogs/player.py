@@ -19,7 +19,8 @@ class Player(commands.Cog):
     @commands.command()
     async def join(self, ctx):
         if ctx.author.voice is None or ctx.author.voice.channel is None:
-            await ctx.send("Join a Voice Channel First!")
+            embed = discord.Embed(title = f"Join a Voice Channel First!", color=0xffbf00)
+            await ctx.send(embed=embed)
 
         channel = ctx.message.author.voice.channel
         if ctx.voice_client is None:
@@ -27,38 +28,45 @@ class Player(commands.Cog):
         else:
             await ctx.voice_client.move_to(channel)
             vc = ctx.voice_client
-        await ctx.send("Joined user Channel")
+        embed = discord.Embed(title = f"Joined user Channel", color=0xffbf00)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def leave(self, ctx):
         guild = ctx.message.guild
         voice_client = guild.voice_client
         await voice_client.disconnect()
-        await ctx.send("Left Voice Channel")
+        embed = discord.Embed(title = f"Left Voice Channel", color=0xffbf00)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def pause(self, ctx):
         voice = discord.utils.get(self.client.voice_clients, guild=ctx.guild)
         if voice.is_playing():
             voice.pause()
-            await ctx.send("Paused")
+            embed = discord.Embed(title = f"Paused", color=0xffbf00)
+            await ctx.send(embed=embed)
         else:
-            await ctx.send("Currently no audio is playing.")
+            embed = discord.Embed(title = f"Currently no audio is playing", color=0xffbf00)
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def resume(self, ctx):
         voice = discord.utils.get(self.client.voice_clients, guild=ctx.guild)
         if voice.is_paused():
             voice.resume()
-            await ctx.send("Resumed")
+            embed = discord.Embed(title = f"Resumed", color=0xffbf00)
+            await ctx.send(embed=embed)
         else:
-            await ctx.send("The audio is not paused.")
+            embed = discord.Embed(title = f"The audio is not paused.", color=0xffbf00)
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def stop(self, ctx):
         voice = discord.utils.get(self.client.voice_clients, guild=ctx.guild)
         voice.stop()
-        await ctx.send("Stopped")
+        embed = discord.Embed(title = f"Stopped", color=0xffbf00)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def play(self, ctx, *, name: str):
@@ -67,11 +75,13 @@ class Player(commands.Cog):
             if song_there:
                 os.remove("song.mp3")
         except PermissionError:
-            await ctx.send("Wait for the current playing music to end or use the 'stop' command")
+            embed = discord.Embed(title = f"Wait for the current playing music to end or use the 'stop' command.", color=0xffbf00)
+            await ctx.send(embed=embed)
             return
 
         if ctx.author.voice is None or ctx.author.voice.channel is None:
-            await ctx.send("Join a Voice Channel First!")
+            embed = discord.Embed(title = f"Join a Voice Channel First!", color=0xffbf00)
+            await ctx.send(embed=embed)
 
         channel = ctx.message.author.voice.channel
         if ctx.voice_client is None:
@@ -104,10 +114,10 @@ class Player(commands.Cog):
             ydl.download([url])
         for file in os.listdir("./"):
             if file.endswith(".mp3"):
-                await ctx.send(f"Playing {os.path.splitext(file)[0][:-12]}")
+                embed = discord.Embed(title = f"Playing {os.path.splitext(file)[0][:-12]}", color=0xffbf00)
+                await ctx.send(embed=embed)
                 os.rename(file, "song.mp3")
         voice.play(discord.FFmpegPCMAudio("song.mp3"))
-
 
 def setup(client):
     client.add_cog(Player(client))

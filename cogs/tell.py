@@ -27,7 +27,8 @@ class Tell(commands.Cog):
             response = "Sent"
         except:
             response = "Error"
-        await ctx.send(response)
+        embed = discord.Embed(title = f"{response}", color=0xffbf00)
+        await ctx.send(embed=embed)
 
 
 def setup(client):

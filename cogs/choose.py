@@ -12,18 +12,14 @@ class Choose(commands.Cog):
     async def on_ready(self):
         print('Choose is Online!')
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        msg = message.content
-
     @commands.command()
     async def choose(self, ctx, *, arg=""):
-
         try:
             response = choice(arg.split())
         except:
-            response("Error")
-        await ctx.send(response)
+            response = "Error"
+        embed = discord.Embed(title = f"{response}", color=0xffbf00)
+        await ctx.send(embed=embed)
 
 
 def setup(client):

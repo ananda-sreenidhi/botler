@@ -12,15 +12,11 @@ class Currency(commands.Cog):
     async def on_ready(self):
         print('Currency is Online!')
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        msg = message.content
-
     @commands.command()
     async def currency(self, ctx, amt, fr, to):
         response = codesworth_currency(amt, fr, to)
-        await ctx.send(response)
-
+        embed = discord.Embed(title = f"{response}", color=0xffbf00)
+        await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(Currency(client))
