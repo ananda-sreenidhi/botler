@@ -9,7 +9,7 @@ async-timeout == 3.0.1
 youtube_dl == 2021.4.7
 cloudpickle==0.8.0
 nltk>=3.4.5
-numpy==1.16.2
+numpy==1.22.0
 pandas==0.25.1
 pickleshare==0.7.5
 dnspython==1.16.0
